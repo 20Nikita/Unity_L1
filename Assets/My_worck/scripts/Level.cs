@@ -7,15 +7,16 @@ public class Level : MonoBehaviour
 {
     public GameObject Level_item;
     public GameObject let_item;
+    public GameObject baf_item;
     public GameObject player;
     public Text CauntText;
     public float yskorenie = 0.001f;
     public GameObject EndtBatton;
-    public Vector3 delta;
-    private int N = 15;
+    private int N = 3;
     private float len_item = 100;
     private GameObject[] lewel = new GameObject[15];
     private GameObject[] let = new GameObject[15];
+    private GameObject[] baf = new GameObject[15];
     private float speed = 30f;
     private float speed_player = 50f;
     private int caunt = 0;
@@ -32,8 +33,7 @@ public class Level : MonoBehaviour
             {
                 lewel[i].transform.position = lewel[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
                 let[i].transform.position = let[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
-                let[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-                let[i].GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+                baf[i].transform.position = baf[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
                 if (lewel[i].transform.position.z <= -len_item)
                 {
                     int k = i - 1;
@@ -83,7 +83,20 @@ public class Level : MonoBehaviour
                         let[i].GetComponent<data>().IsYhot = false;
                     }
                 }
-                speed = speed * (1 + yskorenie * Time.deltaTime);
+                if (baf[i].transform.position.z <= -len_item)
+                {
+                    int k = i - 1;
+                    if (k < 0) k = N - 1;
+                    Vector3 p = lewel[k].transform.position;
+                    p = p + new Vector3(Random.Range(-28f, 28f), Random.Range(-28f, 28f), i * len_item + 0.5f + Random.Range(-len_item, len_item));
+                    baf[i].transform.position = p;
+                }
+                    speed = speed * (1 + yskorenie * Time.deltaTime);
+            }
+            if (player.GetComponent<colision>().IsTouchBaff)
+            {
+                player.GetComponent<colision>().IsTouchBaff = false;
+                caunt = caunt + 1;
             }
             CauntText.text = "Ñ÷¸ò: " + caunt.ToString();
         }
@@ -112,9 +125,7 @@ public class Level : MonoBehaviour
                 let[i] = Instantiate(let_item, new Vector3(rand, -rand, i * len_item + 0.5f * len_item), Quaternion.identity);
             }
             let[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation[type]));
-            let[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            let[i].GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
-
+            baf[i] = Instantiate(baf_item, new Vector3(Random.Range(-28f, 28f), Random.Range(-28f, 28f), i * len_item + 0.5f + Random.Range(-len_item, len_item)), Quaternion.identity);
         }
     }
 
@@ -123,7 +134,8 @@ public class Level : MonoBehaviour
          for (int i = 0; i<N; i++) {
             Destroy(lewel[i]);
             Destroy(let[i]);
-         }
+            Destroy(baf[i]);
+        }
         Start();
         transform.position = new Vector3(0, 0, 0);
         player.transform.position = new Vector3(0, -0.8f, 3);

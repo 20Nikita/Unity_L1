@@ -571,11 +571,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level_item: {fileID: 9077472519164205211, guid: 3d9343dd4c1923f4aa34e6783fa5f155, type: 3}
   let_item: {fileID: 3220272368393728536, guid: 1fba0800d8a348f41a88035678609a77, type: 3}
+  baf_item: {fileID: 5303394130796946763, guid: 50f7f4624b020414b9ae8b336690356e, type: 3}
   player: {fileID: 1273988434}
   CauntText: {fileID: 500685522}
   yskorenie: 0.001
   EndtBatton: {fileID: 1392353194}
-  delta: {x: 0, y: 0, z: 10}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsNoTouch: 1
+  IsTouchBaff: 0
   stolknovenie: ctena
 --- !u!1 &1392353194
 GameObject:
