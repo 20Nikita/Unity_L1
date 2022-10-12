@@ -12,11 +12,12 @@ public class Level : MonoBehaviour
     public float yskorenie = 0.001f;
     public GameObject EndtBatton;
     public Vector3 delta;
-    private int N = 3;
+    private int N = 15;
     private float len_item = 100;
     private GameObject[] lewel = new GameObject[15];
     private GameObject[] let = new GameObject[15];
-    private float speed = 20f;
+    private float speed = 30f;
+    private float speed_player = 50f;
     private int caunt = 0;
     private float[] rotation = { 0, 45, 90, -45 };
     private float[] pasition = { 7.5f, 5f, 7.5f, -5f };
@@ -26,7 +27,7 @@ public class Level : MonoBehaviour
     {
         if (player.GetComponent<colision>().IsNoTouch)
         {
-            transform.position = transform.position + new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * speed, Input.GetAxis("Vertical") * Time.deltaTime * speed, 0);
+            transform.position = transform.position + new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * speed_player, Input.GetAxis("Vertical") * Time.deltaTime * speed_player, 0);
             for (int i = 0; i < N; i++)
             {
                 lewel[i].transform.position = lewel[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
@@ -47,7 +48,7 @@ public class Level : MonoBehaviour
                     int k = i - 1;
                     if (k < 0) k = N - 1;
                     Vector3 p = let[k].transform.position;
-                    p.z = p.z + len_item;
+                    p.z = p.z + len_item + (speed - 20f)*2;
                     if (type == 0)
                     {
                         p.x = Random.Range(-pasition[type], pasition[type]);
