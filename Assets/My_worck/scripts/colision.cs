@@ -9,6 +9,7 @@ public class colision : MonoBehaviour
     // Start is called before the first frame update
     void OnCollisionEnter(Collision other)  {
         stolknovenie = other.gameObject.name;
+        Debug.Log(stolknovenie);
         IsNoTouch = false;
     }
 }

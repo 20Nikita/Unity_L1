@@ -12,12 +12,14 @@ public class Level : MonoBehaviour
     public float yskorenie = 0.001f;
     public GameObject EndtBatton;
     public Vector3 delta;
-    private int N = 15;
+    private int N = 3;
     private float len_item = 100;
     private GameObject[] lewel = new GameObject[15];
     private GameObject[] let = new GameObject[15];
     private float speed = 20f;
     private int caunt = 0;
+    private float[] rotation = { 0, 45, 90, -45 };
+    private float[] pasition = { 7.5f, 5f, 7.5f, -5f };
 
     // Update is called once per frame
     void Update()
@@ -29,6 +31,8 @@ public class Level : MonoBehaviour
             {
                 lewel[i].transform.position = lewel[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
                 let[i].transform.position = let[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
+                let[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                let[i].GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 if (lewel[i].transform.position.z <= -len_item)
                 {
                     int k = i - 1;
@@ -39,12 +43,35 @@ public class Level : MonoBehaviour
                 }
                 if (let[i].transform.position.z <= -len_item)
                 {
+                    int type = Random.Range(0, 4);
                     int k = i - 1;
                     if (k < 0) k = N - 1;
                     Vector3 p = let[k].transform.position;
                     p.z = p.z + len_item;
+                    if (type == 0)
+                    {
+                        p.x = Random.Range(-pasition[type], pasition[type]);
+                        p.y = 0;
+                    }
+                    else if (type == 2)
+                    {
+                        p.x = 0;
+                        p.y = Random.Range(-pasition[type], pasition[type]);
+                    }
+                    else if (type == 1)
+                    {
+                        float rand = Random.Range(-pasition[type], pasition[type]);
+                        p.x = rand;
+                        p.y = rand;
+                    }
+                    else if (type == 3)
+                    {
+                        float rand = Random.Range(-pasition[type], pasition[type]);
+                        p.x = rand;
+                        p.y = -rand;
+                    }
                     let[i].transform.position = p;
-                    let[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-180, 180)));
+                    let[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation[type]));
                     let[i].GetComponent<data>().IsYhot = true;
                 }
                 if (let[i].transform.position.z < player.transform.position.z)
@@ -69,9 +96,24 @@ public class Level : MonoBehaviour
     {
         EndtBatton.SetActive(false);
         for (int i = 0; i < N; i++) {
+            int type = Random.Range(0, 4);
             lewel[i] = Instantiate(Level_item, new Vector3(0, 0, i * len_item), Quaternion.identity);
-            let[i] = Instantiate(let_item, new Vector3(Random.Range(-delta.x, delta.x), Random.Range(-delta.y, delta.y), i * len_item + 0.5f * len_item + Random.Range(-delta.z, delta.z)), Quaternion.identity);
-            let[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-180, 180)));
+            if (type == 0)
+                let[i] = Instantiate(let_item, new Vector3(Random.Range(-pasition[type], pasition[type]), 0, i * len_item + 0.5f * len_item), Quaternion.identity);
+            else if (type == 2)
+                let[i] = Instantiate(let_item, new Vector3(0, Random.Range(-pasition[type], pasition[type]), i * len_item + 0.5f * len_item), Quaternion.identity);
+            else if (type == 1) {
+                float rand = Random.Range(-pasition[type], pasition[type]);
+                let[i] = Instantiate(let_item, new Vector3(rand, rand, i * len_item + 0.5f * len_item), Quaternion.identity);
+            }
+            else if (type == 3) {
+                float rand = Random.Range(-pasition[type], pasition[type]);
+                let[i] = Instantiate(let_item, new Vector3(rand, -rand, i * len_item + 0.5f * len_item), Quaternion.identity);
+            }
+            let[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotation[type]));
+            let[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            let[i].GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+
         }
     }
 
