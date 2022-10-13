@@ -883,6 +883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5800628350024633137}
   - component: {fileID: 658073858693305528}
+  - component: {fileID: 2338063399712282515}
   m_Layer: 0
   m_Name: baf
   m_TagString: Untagged
@@ -934,6 +935,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &2338063399712282515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303394130796946763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61aee2366f07af4dbf719e078e2312c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsNoTouch: 1
+  stolknovenie: 
+  self_tupe: baf
 --- !u!1 &5683614221468610427
 GameObject:
   m_ObjectHideFlags: 0

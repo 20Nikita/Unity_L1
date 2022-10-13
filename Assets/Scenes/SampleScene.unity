@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 1273988439}
   - component: {fileID: 1273988440}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,8 +810,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsNoTouch: 1
-  IsTouchBaff: 0
   stolknovenie: ctena
+  self_tupe: Player
 --- !u!1 &1392353194
 GameObject:
   m_ObjectHideFlags: 0

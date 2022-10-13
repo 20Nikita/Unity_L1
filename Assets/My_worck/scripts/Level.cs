@@ -83,20 +83,24 @@ public class Level : MonoBehaviour
                         let[i].GetComponent<data>().IsYhot = false;
                     }
                 }
-                if (baf[i].transform.position.z <= -len_item)
+                if (baf[i].transform.position.z <= -len_item || !baf[i].GetComponent<colision>().IsNoTouch)
                 {
                     int k = i - 1;
                     if (k < 0) k = N - 1;
                     Vector3 p = lewel[k].transform.position;
                     p = p + new Vector3(Random.Range(-28f, 28f), Random.Range(-28f, 28f), i * len_item + 0.5f + Random.Range(-len_item, len_item));
                     baf[i].transform.position = p;
+                    if (!baf[i].GetComponent<colision>().IsNoTouch)
+                        caunt = caunt + 1;
+                    baf[i].GetComponent<colision>().IsNoTouch = true;
                 }
+                
                     speed = speed * (1 + yskorenie * Time.deltaTime);
             }
-            if (player.GetComponent<colision>().IsTouchBaff)
+            //if (player.GetComponent<colision>().IsTouchBaff)
             {
-                player.GetComponent<colision>().IsTouchBaff = false;
-                caunt = caunt + 1;
+                //player.GetComponent<colision>().IsTouchBaff = false;
+                //caunt = caunt + 1;
             }
             CauntText.text = "Ñ÷¸ò: " + caunt.ToString();
         }
