@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
-    public GameObject Level_item;
     public GameObject baf_item;
     public GameObject player;
     public Text CauntText;
     public GameObject EndtBatton;
     private int N;
     private float len_item;
-    private GameObject[] lewel = new GameObject[15];
     private GameObject[] baf = new GameObject[15];
     private float speed;
     private float speed_player = 50f;
@@ -27,21 +25,13 @@ public class Level : MonoBehaviour
             transform.position = transform.position + new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * speed_player, Input.GetAxis("Vertical") * Time.deltaTime * speed_player, 0);
             for (int i = 0; i < N; i++)
             {
-                lewel[i].transform.position = lewel[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
                 baf[i].transform.position = baf[i].transform.position + new Vector3(0, 0, -speed * Time.deltaTime);
-                if (lewel[i].transform.position.z <= -len_item)
-                {
-                    int k = i - 1;
-                    if (k < 0) k = N - 1;
-                    Vector3 p = lewel[k].transform.position;
-                    p.z = p.z + len_item;
-                    lewel[i].transform.position = p;
-                }
+                
                 if (baf[i].transform.position.z <= -len_item || !baf[i].GetComponent<colision>().IsNoTouch)
                 {
                     int k = i - 1;
                     if (k < 0) k = N - 1;
-                    Vector3 p = lewel[k].transform.position;
+                    Vector3 p = new Vector3(0, 0, (k + 0.5f) * len_item);
                     p = p + new Vector3(Random.Range(-28f, 28f), Random.Range(-28f, 28f), i * len_item + 0.5f + Random.Range(-len_item, len_item));
                     baf[i].transform.position = p;
                     if (!baf[i].GetComponent<colision>().IsNoTouch)
@@ -66,7 +56,6 @@ public class Level : MonoBehaviour
         len_item = Constants.GetComponent<Constants>().len_item;
         EndtBatton.SetActive(false);
         for (int i = 0; i < N; i++) {
-            lewel[i] = Instantiate(Level_item, new Vector3(0, 0, i * len_item), Quaternion.identity);
             baf[i] = Instantiate(baf_item, new Vector3(Random.Range(-28f, 28f), Random.Range(-28f, 28f), i * len_item + 0.5f + Random.Range(-len_item, len_item)), Quaternion.identity);
         }
     }
@@ -74,7 +63,6 @@ public class Level : MonoBehaviour
     public void Restart()
     {
          for (int i = 0; i<N; i++) {
-            Destroy(lewel[i]);
             Destroy(baf[i]);
         }
         Start();
