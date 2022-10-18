@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawn_lewel : MonoBehaviour
 {
-    public GameObject spawn_item;
+    public GameObject lewel_item;
     private int N;
     private GameObject Constants;
     private float len_item;
@@ -18,7 +18,7 @@ public class Spawn_lewel : MonoBehaviour
         len_item = Constants.GetComponent<Constants>().len_item;
         for (int i = 0; i < N; i++)
         {
-            lewel[i] = Instantiate(spawn_item, new Vector3(0, 0, (i + 0.5f) * len_item), Quaternion.identity);
+            lewel[i] = Instantiate(lewel_item, new Vector3(0, 0, (i + 0.5f) * len_item), Quaternion.identity);
         }
     }
 

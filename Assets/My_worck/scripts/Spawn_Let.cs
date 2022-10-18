@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn_Let : MonoBehaviour
+public class Spawn_let : MonoBehaviour
 {
     public GameObject[] let_item;
     private int N;

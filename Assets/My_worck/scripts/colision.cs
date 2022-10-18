@@ -16,9 +16,10 @@ public class colision : MonoBehaviour
             if (stolknovenie == "Player")
                 IsNoTouch = false;
         }
-        else if (stolknovenie != "baf(Clone)")
+        else if (stolknovenie.Substring(0, 3) != "baf")
         {
             Debug.Log(stolknovenie);
+            Debug.Log(stolknovenie.Substring(0, 3));
             Constants.GetComponent<Constants>().play = false;
         }
     }
