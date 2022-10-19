@@ -19,7 +19,6 @@ public class colision : MonoBehaviour
         else if (stolknovenie.Substring(0, 3) != "baf")
         {
             Debug.Log(stolknovenie);
-            Debug.Log(stolknovenie.Substring(0, 3));
             Constants.GetComponent<Constants>().play = false;
         }
     }

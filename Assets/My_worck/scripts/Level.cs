@@ -8,6 +8,7 @@ public class Level : MonoBehaviour
     public GameObject player;
     public Text CauntText;
     public GameObject EndtBatton;
+    public GameObject EndtBatton2;
     private float speed_player = 50f;
     private GameObject Constants;
     // Update is called once per frame
@@ -22,12 +23,15 @@ public class Level : MonoBehaviour
         {
             CauntText.text = "Вы погибли со счётом " + Constants.GetComponent<Constants>().caunt.ToString();
             EndtBatton.SetActive(true);
+            EndtBatton2.SetActive(true);
         }
     }
     void Start()
     {
+        speed_player = Nastroiki.Speed_player;
         Constants = GameObject.Find("Constants");
         EndtBatton.SetActive(false);
+        EndtBatton2.SetActive(false);
     }
 
     public void Restart()

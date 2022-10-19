@@ -45,13 +45,14 @@ public class Spawn_baf : MonoBehaviour
                 if (baf[i].transform.position.z <= -len_item || !baf[i].GetComponent<colision>().IsNoTouch)
                 {
                     int k = i - 1;
+                    int type = Random.Range(0, baf_item.Length);
                     if (k < 0) k = N - 1;
                     Vector3 p = new Vector3(0, 0, (k + 0.5f) * len_item);
                     p = p + new Vector3(Random.Range(-28f, 28f), Random.Range(-28f, 28f), i * len_item + 0.5f + Random.Range(-len_item, len_item));
-                    baf[i].transform.position = p;
-
                     if (!baf[i].GetComponent<colision>().IsNoTouch)
                         baf[i].GetComponent<Baf>().Baffer();
+                    Destroy(baf[i]);
+                    baf[i] = Instantiate(baf_item[type], p, Quaternion.identity);
                     baf[i].GetComponent<colision>().IsNoTouch = true;
 
                 }

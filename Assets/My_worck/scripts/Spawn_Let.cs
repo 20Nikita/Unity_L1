@@ -57,8 +57,9 @@ public class Spawn_let : MonoBehaviour
                     if (k < 0) k = N - 1;
                     Vector3 p = let[k].transform.position;
                     p.z = p.z + len_item + speed * 2; p.x = 0; p.y = 0;
-                    let[i].transform.position = p;
-                    let[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                    Destroy(let[i]);
+                    int type = Random.Range(0, let_item.Length);
+                    let[i] = Instantiate(let_item[type], p, Quaternion.identity);
                     let[i].GetComponent<Let>().Reset_pozition();
                 }
             }
