@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class colision : MonoBehaviour
+public class Colision : MonoBehaviour
 {
     public bool IsNoTouch = true;
     public string stolknovenie;
@@ -18,7 +16,6 @@ public class colision : MonoBehaviour
         }
         else if (stolknovenie.Substring(0, 3) != "baf")
         {
-            Debug.Log(stolknovenie);
             Constants.GetComponent<Constants>().play = false;
         }
     }

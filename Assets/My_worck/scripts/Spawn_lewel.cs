@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn_lewel : MonoBehaviour
+public class Spawn_Lewel : MonoBehaviour
 {
     public GameObject lewel_item;
     private int N;
@@ -22,7 +20,6 @@ public class Spawn_lewel : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Constants.GetComponent<Constants>().play)

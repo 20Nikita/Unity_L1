@@ -786,7 +786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7793870484345751702}
   m_Layer: 0
-  m_Name: Stena
+  m_Name: stena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Let1 : Let
+public class Let_1 : Let
 {
     public override void Reset_pozition()
     {

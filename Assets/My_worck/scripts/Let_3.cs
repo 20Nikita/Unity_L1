@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Let3 : Let
+public class Let_3 : Let
 {
     private float speed_const = 20f;
     private float speed = 20f;

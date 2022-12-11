@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn_let : MonoBehaviour
+public class Spawn_Let : MonoBehaviour
 {
     public GameObject[] let_item;
     private int N;
@@ -13,13 +11,11 @@ public class Spawn_let : MonoBehaviour
     private float len_item;
     private float speed;
 
-    // Start is called before the first frame update
     void Start()
     {
         Constants = GameObject.Find("Constants");
         N = Constants.GetComponent<Constants>().N;
         len_item = Constants.GetComponent<Constants>().len_item;
-        Debug.Log(N);
         for (int i = 0; i < N; i++)
         {
             int type = Random.Range(0, let_item.Length);
@@ -36,7 +32,6 @@ public class Spawn_let : MonoBehaviour
         Start();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Constants.GetComponent<Constants>().play)
@@ -63,7 +58,6 @@ public class Spawn_let : MonoBehaviour
                     let[i].GetComponent<Let>().Reset_pozition();
                 }
             }
-
         }
     }
 }
