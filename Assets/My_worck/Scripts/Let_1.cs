@@ -1,10 +1,10 @@
 using UnityEngine;
-
+// Статичное препядствие (не двигается)
 public class Let_1 : Let
 {
     public override void Reset_pozition()
     {
-        int type = Random.Range(0, 6);
+        int type = Random.Range(0, 6); // 6 позиций
         if (type == 1)
         {
             transform.position = transform.position + new Vector3(25, 0, 0);

@@ -1447,7 +1447,7 @@ MonoBehaviour:
   caunt: 0
   len_item: 100
   speed: 30
-  yskorenie: 0.001
+  yskorenie: 0.005
   play: 0
 --- !u!4 &1799374493
 Transform:

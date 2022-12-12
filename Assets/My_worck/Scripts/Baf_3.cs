@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class Baf_3 : Baf
 {
-    void Start()
-    {
-        Constants = GameObject.Find("Constants");
-    }
+    // При столкновении с этим бонусом увеличивается скорость
     public override void Baffer()
     {
         Constants.GetComponent<Constants>().speed *= 1.1f;

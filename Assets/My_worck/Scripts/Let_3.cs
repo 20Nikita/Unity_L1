@@ -1,14 +1,13 @@
 using UnityEngine;
 
+// Смещающееся препядствие (вверх-вниз, влево-вправо)
 public class Let_3 : Let
 {
-    private float speed_const = 20f;
-    private float speed = 20f;
-    private float delta = 22f;
-    private int type;
-    void Start()
-    {
-    }
+    private float speed_const = 20f;    // Скорость
+    private float speed = 20f;          // Текущая скорость
+    private float delta = 22f;          // Растояние движения
+    private int type;                   // Тип движения
+    // Выбрать тип смешения (вверх-вниз, влево-вправо)
     public override void Reset_pozition()
     {
         type = Random.Range(0, 2);
@@ -19,7 +18,7 @@ public class Let_3 : Let
     }
     void Update() 
     {
-        if (type == 0)
+        if (type == 0)      // Вверх-вниз
         {
             if (transform.position.x > delta)
                 speed = -speed_const;
@@ -27,7 +26,7 @@ public class Let_3 : Let
                 speed = speed_const;
             transform.position = transform.position + new Vector3(speed * Time.deltaTime, 0, 0);
         }
-        else if (type == 1)
+        else if (type == 1) // Влево-вправ
         {
             if (transform.position.y > delta)
                 speed = -speed_const;
