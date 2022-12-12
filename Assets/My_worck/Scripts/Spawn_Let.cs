@@ -32,6 +32,7 @@ public class Spawn_Let : MonoBehaviour
         for (int i = 0; i < N; i++)
         {
             Destroy(let[i]);
+            let_yhot[i] = false;
         }
         Start();
     }
